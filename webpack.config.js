@@ -7,14 +7,14 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "babel"),
+    path: path.resolve(__dirname, "bundle_react"),
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].css"
     }),
     new HtmlWebPackPlugin({
-      template: "index.html",
+      template: "./src/index.html",
     }),
   ],
   devServer: {
@@ -23,31 +23,25 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(scss|less|css)$/,
-        use: [
-          MiniCssExtractPlugin,
-          "style-loader",
-          "css-loader",
-          "sass-loader",
-        ],
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.m?js$/,
         exclude: /(node_modules)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-          },
-        },
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
       },
       {
-        test: /\.(png|jpe?g|gif|mp3)$/i,
-        use: [
-          {
-            loader: "file-loader",
-          },
-        ],
+        test: /\.(png|jpe?g|gif|mp4|webp)$/i,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images',
+        },
       },
     ],
   },

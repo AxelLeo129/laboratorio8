@@ -1,0 +1,48 @@
+.grid--item {
+    background-color: #009688;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.main--container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.card--container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+
+.front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: #7FD1D4;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star--img {
+    width: 50%;
+}
