@@ -19,7 +19,7 @@ const Container = (props) => {
 
   const [grid, setGrid] = useState(sortRandomArray([...cards]));
   const [count, setCount] = useState(0);
-  const [id_selected, setIdSelected] = useState(null);
+  const [idSelected, setIdSelected] = useState(null);
   const [turnos, setTurno] = useState(0);
   const [complete, setComplete] = useState(0);
   const [flip, setFlip] = useState(true);
@@ -44,32 +44,32 @@ const Container = (props) => {
   }
 
   const flipCard = (index) => {
-    const grid_copy = [...grid];
-    if (grid_copy[index].id != id_selected && !grid_copy[index].paried && flip) {
+    const gridCopy = [...grid];
+    if (gridCopy[index].id != idSelected && !gridCopy[index].paried && flip) {
       setFlip(false);
-      grid_copy[index].style = { transform: "rotateY(180deg)" };
-      setGrid(grid_copy);
+      gridCopy[index].style = { transform: "rotateY(180deg)" };
+      setGrid(gridCopy);
       if (count == 0) {
         setCount(1);
-        setIdSelected(grid_copy[index].id);
+        setIdSelected(gridCopy[index].id);
         setFlip(true);
       } else {
         setTurno(turnos + 1);
-        if (grid_copy[index].relate == id_selected) {
+        if (gridCopy[index].relate == idSelected) {
           setComplete(complete + 2);
-          const index_pev = grid_copy.findIndex((e) => e.id == id_selected);
-          grid_copy[index_pev].paried = true;
-          grid_copy[index].paried = true;
-          setGrid(grid_copy);
+          const indexPev = gridCopy.findIndex((e) => e.id == idSelected);
+          gridCopy[indexPev].paried = true;
+          gridCopy[index].paried = true;
+          setGrid(gridCopy);
           setIdSelected(null);
           setCount(0);
           setFlip(true);
         } else {
           setTimeout(() => {
-            const index_pev = grid_copy.findIndex((e) => e.id == id_selected);
-            grid_copy[index_pev].style = null;
-            grid_copy[index].style = null;
-            setGrid(grid_copy);
+            const indexPev = gridCopy.findIndex((e) => e.id == idSelected);
+            gridCopy[indexPev].style = null;
+            gridCopy[index].style = null;
+            setGrid(gridCopy);
             setCount(0);
             setIdSelected(null);
             setFlip(true);
